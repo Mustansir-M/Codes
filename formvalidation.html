@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <script>
+        // Function to validate email format
+        function validateEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Function to validate password length and special character
+        function validatePassword(password) {
+            var passwordRegex = /^(?=.*[!@#$%^&])/;
+            return password.length >= 8 && passwordRegex.test(password);
+        }
+
+        // Function to validate age
+        function validateAge(age) {
+            return !isNaN(age) && age >= 18;
+        }
+
+        // Form submission
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var age = document.getElementById("age").value;
+
+            var emailErr = document.getElementById("emailErr");
+            var passwordErr = document.getElementById("passwordErr");
+            var confirmPasswordErr = document.getElementById("confirmPasswordErr");
+            var ageErr = document.getElementById("ageErr");
+
+            // Validate email
+            if (email === "") {
+                emailErr.innerHTML = "Email is required";
+                return false;
+            } else if (!validateEmail(email)) {
+                emailErr.innerHTML = "Invalid email format";
+                return false;
+            }
+
+            // Validate password
+            if (password === "") {
+                passwordErr.innerHTML = "Password is required";
+                return false;
+            } else if (!validatePassword(password)) {
+                passwordErr.innerHTML = "Password should be at least 8 characters long and contain at least one special character";
+                return false;
+            }
+
+            // Validate confirm password
+            if (confirmPassword === "") {
+                confirmPasswordErr.innerHTML = "Confirm Password is required";
+                return false;
+            } else if (confirmPassword !== password) {
+                confirmPasswordErr.innerHTML = "Password do not match";
+                return false;
+            }
+
+            // Validate age
+            if (age === "") {
+                ageErr.innerHTML = "Age is required";
+                return false;
+            } else if (!validateAge(age)) {
+                ageErr.innerHTML = "You must be at least 18 years old";
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Form Validation</h2>
+    <form name="myForm" onsubmit="return validateForm()">
+        <label>Email:</label>
+        <input id="email" type="text" name="email">
+        <span id="emailErr"></span>
+        <br><br>
+
+        <label>Password:</label>
+        <input id="password" type="password" name="password">
+        <span id="passwordErr"></span>
+        <br><br>
+
+        <label>Confirm Password:</label>
+        <input id="confirmPassword" type="password" name="confirmPassword">
+        <span id="confirmPasswordErr"></span>
+        <br><br>
+
+        <label>Age:</label>
+        <input id="age" type="text" name="age">
+        <span id="ageErr"></span>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

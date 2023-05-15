@@ -1,0 +1,156 @@
+<form id="myForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name"><br><br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+const form = document.getElementById('myForm');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  validateForm();
+});
+
+
+function validateForm() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  if (name === '') {
+    alert('Name must be filled out');
+    return false;
+  }
+
+  if (email === '') {
+    alert('Email must be filled out');
+    return false;
+  }
+
+  if (password === '') {
+    alert('Password must be filled out');
+    return false;
+  }
+
+  return true;
+}
+
+
+function validateForm() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (name === '') {
+    alert('Name must be filled out');
+    return false;
+  }
+
+  if (email === '') {
+    alert('Email must be filled out');
+    return false;
+  } else if (!emailRegex.test(email)) {
+    alert('Invalid email address');
+    return false;
+  }
+
+  if (password === '') {
+    alert('Password must be filled out');
+    return false;
+  }
+
+  return true;
+}
+
+
+<form>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password">
+  <input type="button" value="Submit" onclick="validatePassword()">
+</form>
+
+
+function validatePassword() {
+  const passwordInput = document.getElementById('password');
+  const password = passwordInput.value;
+
+  // Check if the password is at least 8 characters long
+  if (password.length < 8) {
+    alert('Password must be at least 8 characters long');
+    return false;
+  }
+
+  // Check if the password contains at least one uppercase letter, one lowercase letter, and one number
+  const uppercaseRegex = /[A-Z]/;
+  const lowercaseRegex = /[a-z]/;
+  const numberRegex = /[0-9]/;
+  if (!uppercaseRegex.test(password) || !lowercaseRegex.test(password) || !numberRegex.test(password)) {
+    alert('Password must contain at least one uppercase letter, one lowercase letter, and one number');
+    return false;
+  }
+
+  // If all checks pass, return true to submit the form
+  return true;
+}
+
+<form>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email">
+  <input type="button" value="Submit" onclick="validateEmail()">
+</form>
+
+
+function validateEmail() {
+  const emailInput = document.getElementById('email');
+  const email = emailInput.value;
+
+  // Check if the email is not empty
+  if (email === '') {
+    alert('Email address is required');
+    return false;
+  }
+
+  // Check if the email is valid
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (!emailRegex.test(email)) {
+    alert('Email address is invalid');
+    return false;
+  }
+
+  // If all checks pass, return true to submit the form
+  return true;
+}
+
+
+<form>
+  <label for="phone">Phone number:</label>
+  <input type="tel" id="phone" name="phone">
+  <input type="button" value="Submit" onclick="validatePhoneNumber()">
+</form>
+
+
+function validatePhoneNumber() {
+  const phoneInput = document.getElementById('phone');
+  const phone = phoneInput.value;
+
+  // Check if the phone number is not empty
+  if (phone === '') {
+    alert('Phone number is required');
+    return false;
+  }
+
+  // Check if the phone number is valid
+  const phoneRegex = /^\d{10}$/;
+  if (!phoneRegex.test(phone)) {
+    alert('Phone number is invalid. Please enter a 10-digit phone number');
+    return false;
+  }
+
+  // If all checks pass, return true to submit the form
+  return true;
+}
